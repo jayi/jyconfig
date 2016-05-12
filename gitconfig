@@ -1,0 +1,14 @@
+[user]
+	name = hongjy
+	email = hjy322@hotmail.com
+[core]
+	# 编辑器，命令行模式执行git commit等操作时使用
+	editor	= vim
+[color]
+	# 设置以下参数后，这些命令在命令行模式下可以高亮
+	branch	= auto
+	log	= auto
+	status	= auto
+	diff	= auto
+	grep	= auto
+
