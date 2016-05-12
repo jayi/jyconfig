@@ -34,11 +34,11 @@ syntax on
 " -- vundle --
 filetype off                  " required
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.Vim
+call vundle#begin()
 
 " let Vundle manage Vundle, required
-Bundle 'gmarik/vundle'
+Bundle 'Vundle/Vundle.vim'
 
 Bundle 'msanders/cocoa.vim'
 
@@ -104,6 +104,7 @@ let g:jedi#completions_command = "<C-/>"
 " 使用 tab 键补全
 Bundle 'ervandew/supertab'
 
+call vundle#end()
 filetype plugin on
 filetype plugin indent on
 
