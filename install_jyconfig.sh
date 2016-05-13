@@ -20,7 +20,7 @@ if [ ! -d $backup_path ]; then
 	mkdir $backup_path
 fi
 
-mv .vim $backup_path
+# mv .vim $backup_path
 for file in zshrc vimrc tmux.conf gitconfig pythonstartup bashrc completion
 do
 	mv .$file $backup_path
