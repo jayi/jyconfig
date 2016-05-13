@@ -34,30 +34,35 @@ syntax on
 " -- vundle --
 filetype off                  " required
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.Vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" vim  插件包管理工具
 " let Vundle manage Vundle, required
 Bundle 'Vundle/Vundle.vim'
 
+" objc 支持
 Bundle 'msanders/cocoa.vim'
 
 " 快速注释 <leader>cc <leader>cu <leader>c<space>
 Bundle 'scrooloose/nerdcommenter'
+" 注释的时候自动加个空格, 强迫症必配
+let g:NERDSpaceDelims=1
 
+" 底部状态栏
 Bundle 'bling/vim-airline'
 let g:airline_theme="dark"
 let g:airline_section_z="%3p%% %{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#:%3c%V%"
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
-Bundle 'tpope/vim-commentary'
 " directory tree
 Bundle 'scrooloose/nerdtree'
+
 " ctrl+p, search file
 Bundle 'kien/ctrlp.vim'
 map <C-K> :CtrlPTag<CR>
 
-"Bundle 'vim-scripts/taglist.vim'
+" 文件内跳转 <leader><leader>w/f/b
 Bundle 'Lokaltog/vim-easymotion'
 
 " 显示marks - 方便自己进行标记和跳转
@@ -68,16 +73,18 @@ Bundle 'kshenoy/vim-signature'
 let g:SignatureEnabledAtStartup = 0
 map <leader>m :SignatureToggleSigns<CR>
 
+" 多重选择
 Bundle 'terryma/vim-multiple-cursors'
 
+" 删除行末空格
 Bundle 'bronson/vim-trailing-whitespace'
 map <leader><space> :FixWhitespace<cr>
 
-if v:version > 700 || v:version == 700 && has('patch167')
-       "Bundle 'majutsushi/tagbar'
-       "let g:tagbar_ctags_bin = '~/.vim/ctags'
-       "map <leader>t :Tagbar<CR>
-endif
+" taglist
+Bundle 'majutsushi/tagbar'
+map <leader>t :Tagbar<CR>
+" 启动时自动focus
+let g:tagbar_autofocus = 1
 
 " syntax check
 Bundle 'scrooloose/syntastic'
@@ -104,14 +111,13 @@ let g:jedi#completions_command = "<C-/>"
 " 使用 tab 键补全
 Bundle 'ervandew/supertab'
 
+" 中文文档
+Bundle 'vimcn/vimcdoc'
+
 call vundle#end()
+
 filetype plugin on
 filetype plugin indent on
-
-function! UpdateCtagsCscope()
-	! ctags -R; cscope -ubR
-	cs r
-endfunction
 
 " -- key map --
 " reload ~/.vimrc
@@ -154,7 +160,25 @@ nmap L :tabnext <CR>
 map H :tabprevious <CR>
 nmap H :tabprevious <CR>
 
-" -- tabline --
+set tabline=%!MyTabLine()
+
+" -- save session --
+autocmd VimEnter *
+	\ if argc() == 0 && filereadable("Session.vim") |
+	\ source Session.vim |
+	\ endif
+autocmd VimLeave *
+	\ if argc() == 0 && filereadable("Session.vim") |
+	\ mksession! |
+	\ endif
+
+" -- functions --
+function! UpdateCtagsCscope()
+	! ctags -R; cscope -ubR
+	cs r
+endfunction
+
+" tabline
 function! MyTabLabel(n)
 	let buflist = tabpagebuflist(a:n)
 	let winnr = tabpagewinnr(a:n)
@@ -188,20 +212,4 @@ function! MyTabLine()
 
 	return s
 endfunction
-set tabline=%!MyTabLine()
-
-" -- save session --
-autocmd VimEnter *
-	\ if argc() == 0 && filereadable("Session.vim") |
-	\ source Session.vim |
-	\ endif
-autocmd VimLeave *
-	\ if argc() == 0 && filereadable("Session.vim") |
-	\ mksession! |
-	\ endif
-
-" -- taglist --
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_Right_Window = 1
-"let Tlist_Show_One_File = 1
 
