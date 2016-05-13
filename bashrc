@@ -45,14 +45,3 @@ alias vdir='ls -G --format=long'
 alias ll='ls -l'                              # long list
 alias la='ls -A'                              # all but . and ..
 alias l='ls -CF'                              #
-
-#eval "$(rbenv init -)"
-
-PERL_MB_OPT="--install_base \"/Users/hongjy/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/hongjy/perl5"; export PERL_MM_OPT;
-
-#export GOROOT=/root/app/go
-#export GOPATH=/root/app/gopackage
-#export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:/root/app/mongodb-linux-x86_64-3.0.1/bin
-
-export _JAVA_OPTIONS="-Djava.net.preferIPv4Stack=true"
