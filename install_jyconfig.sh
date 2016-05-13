@@ -2,8 +2,8 @@
 
 PREFIX=".jyconfig"
 
-echo installing oh-my-zsh...
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+# echo installing oh-my-zsh...
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 cd ~
 
@@ -21,7 +21,7 @@ if [ ! -d $backup_path ]; then
 fi
 
 mv .vim $backup_path
-for file in zshrc vimrc tmux.conf gitconfig pythonstartup
+for file in zshrc vimrc tmux.conf gitconfig pythonstartup bashrc
 do
 	mv .$file $backup_path
 	ln -s $PREFIX/$file .$file
