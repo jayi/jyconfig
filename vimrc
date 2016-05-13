@@ -39,55 +39,55 @@ call vundle#begin()
 
 " vim  插件包管理工具
 " let Vundle manage Vundle, required
-Bundle 'Vundle/Vundle.vim'
+Plugin 'Vundle/Vundle.vim'
 
 " objc 支持
-Bundle 'msanders/cocoa.vim'
+Plugin 'msanders/cocoa.vim'
 
 " 快速注释 <leader>cc <leader>cu <leader>c<space>
-Bundle 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdcommenter'
 " 注释的时候自动加个空格, 强迫症必配
 let g:NERDSpaceDelims=1
 
 " 底部状态栏
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 let g:airline_theme="dark"
 let g:airline_section_z="%3p%% %{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#:%3c%V%"
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 
 " directory tree
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 
 " ctrl+p, search file
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 map <C-K> :CtrlPTag<CR>
 
 " 文件内跳转 <leader><leader>w/f/b
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
 
 " 显示marks - 方便自己进行标记和跳转
 " m[a-zA-Z] add mark
 " '[a-zA-Z] go to mark
 " m<Space>  del all marks
-Bundle 'kshenoy/vim-signature'
+Plugin 'kshenoy/vim-signature'
 let g:SignatureEnabledAtStartup = 0
 map <leader>m :SignatureToggleSigns<CR>
 
 " 多重选择
-Bundle 'terryma/vim-multiple-cursors'
+Plugin 'terryma/vim-multiple-cursors'
 
 " 删除行末空格
-Bundle 'bronson/vim-trailing-whitespace'
+Plugin 'bronson/vim-trailing-whitespace'
 map <leader><space> :FixWhitespace<cr>
 
 " taglist
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 map <leader>t :Tagbar<CR>
 " 启动时自动focus
 let g:tagbar_autofocus = 1
 
 " syntax check
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 map <leader>s :SyntasticToggleMode<CR>
 let g:syntastic_mode_map = { 'mode': 'active',
        		\ 'active_filetypes': [],
@@ -105,14 +105,14 @@ let g:syntastic_c_compiler_options = '-Wall'
 highlight SyntasticErrorSign guifg=white guibg=black
 
 " python 自动补全
-Bundle 'davidhalter/jedi-vim'
+Plugin 'davidhalter/jedi-vim'
 let g:jedi#completions_command = "<C-/>"
 
 " 使用 tab 键补全
-Bundle 'ervandew/supertab'
+Plugin 'ervandew/supertab'
 
 " 中文文档
-Bundle 'vimcn/vimcdoc'
+Plugin 'vimcn/vimcdoc'
 
 call vundle#end()
 
