@@ -9,6 +9,9 @@ cd ~
 
 if [ -d $PREFIX ]; then
 	echo jyconfig already installed
+	cd $PREFIX
+	git pull
+	cd ~
 else
 	echo installing jyconfig...
 	git clone https://github.com/jayi/jyconfig.git $PREFIX
