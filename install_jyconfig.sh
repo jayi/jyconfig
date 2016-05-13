@@ -9,11 +9,10 @@ cd ~
 
 if [ -d $PREFIX ]; then
 	echo jyconfig already installed
-	exit -1
+else
+	echo installing jyconfig...
+	git clone https://github.com/jayi/jyconfig.git $PREFIX
 fi
-
-echo installing jyconfig...
-git clone https://github.com/jayi/jyconfig.git $PREFIX
 
 timestamp=`date +%F_%T`
 backup_path="jybackup_$timestamp"
