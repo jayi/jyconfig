@@ -24,7 +24,7 @@ if [ ! -d $backup_path ]; then
 fi
 
 # mv .vim $backup_path
-for file in zshrc vimrc tmux.conf gitconfig pythonstartup bashrc completion
+for file in zshrc vimrc tmux.conf pythonstartup bashrc completion
 do
 	mv .$file $backup_path
 	ln -s $PREFIX/$file .$file
