@@ -4,6 +4,10 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+if [ -f /etc/profile ]; then
+	. /etc/profile
+fi
+
 if [ -f ~/.completion/git.completion.bash ]; then
 	. ~/.completion/git.completion.bash
 fi
@@ -45,3 +49,4 @@ alias vdir='ls -G --format=long'
 alias ll='ls -l'                              # long list
 alias la='ls -A'                              # all but . and ..
 alias l='ls -CF'                              #
+

@@ -115,10 +115,10 @@ Plugin 'ervandew/supertab'
 Plugin 'vimcn/vimcdoc'
 
 " 生成 doxygen 注释
-Bundle 'DoxygenToolkit.vim'
+Plugin 'DoxygenToolkit.vim'
 
 " solarized 主题
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 let g:solarized_termcolors=256
 
 call vundle#end()
@@ -142,7 +142,9 @@ if has("gui_running")
 	behave mswin
 
 	set guifont=Source\ Code\ Pro\ ExtraLight:h14
+	set background=dark
 	colorscheme solarized
+	let g:airline_powerline_fonts = 1 " enable powerline-fonts
 else
 	colorschem desert
 	highlight TabLine ctermbg=4
