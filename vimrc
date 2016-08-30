@@ -15,11 +15,11 @@ set backspace=indent,eol,start " 允许自动缩进上退格，换行符上退�
 " language and encoding setting
 set encoding=utf-8
 if has("win32")
-	language US
-	language messages US
+    language US
+    language messages US
 else
-	language en_US.UTF-8
-	language messages en_US.UTF-8
+    language en_US.UTF-8
+    language messages en_US.UTF-8
 endif
 set t_Co=256
 set laststatus=2 " 总是显示状态栏
@@ -90,8 +90,8 @@ let g:tagbar_autofocus = 1
 Plugin 'scrooloose/syntastic'
 map <leader>s :SyntasticToggleMode<CR>
 let g:syntastic_mode_map = { 'mode': 'active',
-       		\ 'active_filetypes': [],
-       		\ 'passive_filetypes': ['c'] }
+            \ 'active_filetypes': [],
+            \ 'passive_filetypes': ['c', 'java'] }
 let g:syntastic_error_symbol='>>'
 let g:syntastic_warning_symbol='>'
 let g:syntastic_check_on_open=1
@@ -115,11 +115,18 @@ Plugin 'ervandew/supertab'
 Plugin 'vimcn/vimcdoc'
 
 " 生成 doxygen 注释
+" :DoxAuthor 	将文件名，作者，时间等
+" :DoxLic 	license注释
+" :Dox 		函数及类注释
 Plugin 'DoxygenToolkit.vim'
 
 " solarized 主题
 Plugin 'altercation/vim-colors-solarized'
 let g:solarized_termcolors=256
+
+" 搜索dash
+Plugin 'rizzatti/dash.vim'
+nmap <silent> <leader>d <Plug>DashSearch
 
 call vundle#end()
 
@@ -127,37 +134,52 @@ filetype plugin on
 filetype plugin indent on
 
 " -- key map --
+
 " reload ~/.vimrc
 map<leader>r :source ~/.vimrc <CR>
 map<leader>u :call UpdateCtagsCscope() <CR><CR><CR>
 map <leader>c :make <CR><CR><CR>
 nmap <leader>c <ESC> :make <CR><CR><CR>
+map <leader>p :set invpaste <CR>
+" Make Y yank everything from the cursor to the end of the line. This makes Y
+" act more like C or D because by default, Y yanks the current line (i.e. the
+" same as yy).
+noremap Y y$
+" Stay in visual mode when indenting. You will never have to run gv after
+" performing an indentation.
+vnoremap < <gv
+vnoremap > >gv
 
 " -- gui depend --
 if has("gui_running")
-	set guioptions-=T
-	source $VIMRUNTIME/delmenu.vim
-	source $VIMRUNTIME/menu.vim
-	source $VIMRUNTIME/mswin.vim
-	behave mswin
+    set guioptions-=T
+    source $VIMRUNTIME/delmenu.vim
+    source $VIMRUNTIME/menu.vim
+    source $VIMRUNTIME/mswin.vim
+    behave mswin
 
-	set guifont=Source\ Code\ Pro\ ExtraLight:h14
-	set background=dark
-	colorscheme solarized
-	let g:airline_powerline_fonts = 1 " enable powerline-fonts
+    set guifont=Source\ Code\ Pro\ ExtraLight:h14
+    set background=dark
+    colorscheme solarized
+    let g:airline_powerline_fonts = 1 " enable powerline-fonts
 else
-	colorschem desert
-	highlight TabLine ctermbg=4
+    colorschem desert
+    highlight TabLine ctermbg=4
 endif
 
 " -- autocmd --
 " different indent of language
+set tabstop=8 		" 文件里的 <Tab> 代表的空格数
+set shiftwidth=4 	" (自动) 缩进每一步使用的空白数目
+set expandtab  		" <Tab> 展开为空格
+set softtabstop=4 	" 输入<Tab> 时, 插入的空格数
+set autoindent 		" 开启新行时，从当前行复制缩进
 if has("autocmd")
-	autocmd FileType python,ruby
-	\ setlocal tabstop=8 shiftwidth=4 softtabstop=4 expandtab
+    autocmd FileType python,ruby,css
+                \ setlocal tabstop=8 shiftwidth=4 softtabstop=4 expandtab
 
-	autocmd FileType java,cpp,javascript,c
-	\ setlocal tabstop=8 shiftwidth=4 softtabstop=4 cindent expandtab
+    autocmd FileType java,cpp,javascript,c
+                \ setlocal tabstop=8 shiftwidth=4 softtabstop=4 cindent expandtab
 endif
 
 " -- switch tab --
@@ -168,16 +190,17 @@ nmap H :tabprevious <CR>
 
 " -- save session --
 autocmd VimEnter *
-	\ if argc() == 0 && filereadable("Session.vim") |
-	\ source Session.vim |
-	\ endif
+            \ if argc() == 0 && filereadable("Session.vim") |
+            \ source Session.vim |
+            \ endif
 autocmd VimLeave *
-	\ if argc() == 0 && filereadable("Session.vim") |
-	\ mksession! |
-	\ endif
+            \ if argc() == 0 && filereadable("Session.vim") |
+            \ mksession! |
+            \ endif
 
 " -- functions --
 function! UpdateCtagsCscope()
-	! ctags -R; cscope -ubR
-	cs r
+    ! ctags -R; cscope -ubR
+    cs r
 endfunction
+
