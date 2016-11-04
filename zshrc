@@ -49,7 +49,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump pip)
+plugins=(git autojump pip go)
 if [ `uname -s` = "Darwin" ]; then
 	plugins=($plugins osx brew brew-cask pod)
 fi
@@ -57,7 +57,9 @@ fi
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:$HOME/bin"
+export GOPATH="$HOME/app/gopackage"
+export GOROOT="/usr/local/go"
+export PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:$HOME/bin:$GOROOT/bin:$GOPATH/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
