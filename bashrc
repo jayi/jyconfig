@@ -34,6 +34,7 @@ alias tmux='tmux -2'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias sed='gsed'
 #
 # Misc :)
 alias less='less -r'                          # raw control characters

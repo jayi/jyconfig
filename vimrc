@@ -60,7 +60,7 @@ Plugin 'scrooloose/nerdtree'
 
 " ctrl+p, search file
 Plugin 'kien/ctrlp.vim'
-map <C-K> :CtrlPTag<CR>
+map <C-K> :CtrlPBuffer<CR>
 
 " 文件内跳转，<leader><leader>w/b/e 词跳转, j/k 行跳转, f/F/t/T 搜索
 Plugin 'Lokaltog/vim-easymotion'
@@ -160,7 +160,7 @@ if has("gui_running")
 
     set guifont=Source\ Code\ Pro\ ExtraLight:h14
     set background=dark
-    colorscheme solarized
+    colorscheme desert
     let g:airline_powerline_fonts = 1 " enable powerline-fonts
 else
     colorschem desert
@@ -203,4 +203,47 @@ function! UpdateCtagsCscope()
     ! ctags -R; cscope -ubR
     cs r
 endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" cscope setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("cscope")
+  set csto=1
+  set cst
+  set nocsverb
+  " add any database in current directory
+  if filereadable("cscope.out")
+      cs add cscope.out
+  endif
+  set csverb
+endif
+
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" buffer setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" buffer快速导航
+nnoremap <Leader>b :bp<CR>
+nnoremap <Leader>f :bn<CR>
+" 查看buffers
+nnoremap <Leader>l :ls<CR>
+" 通过索引快速跳转
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
 

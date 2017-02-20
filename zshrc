@@ -89,7 +89,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias -s html='vim'
-alias -s py='vim'
 alias -s js='vim'
 alias -s c='vim'
 alias -s cpp='vim'
@@ -99,6 +98,7 @@ alias -s zip='unzip'
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
 alias -s bz2='tar -xjvf'
+alias sed='gsed'
 
 export PYTHONSTARTUP=~/.pythonstartup
 
