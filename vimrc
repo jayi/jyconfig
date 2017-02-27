@@ -171,15 +171,17 @@ endif
 " different indent of language
 set tabstop=8 		" 文件里的 <Tab> 代表的空格数
 set shiftwidth=4 	" (自动) 缩进每一步使用的空白数目
-set expandtab  		" <Tab> 展开为空格
+"set expandtab  		" <Tab> 展开为空格
 set softtabstop=4 	" 输入<Tab> 时, 插入的空格数
 set autoindent 		" 开启新行时，从当前行复制缩进
 if has("autocmd")
     autocmd FileType python,ruby,css
                 \ setlocal tabstop=8 shiftwidth=4 softtabstop=4 expandtab
 
-    autocmd FileType java,cpp,javascript,c
+    autocmd FileType java,javascript
                 \ setlocal tabstop=8 shiftwidth=4 softtabstop=4 cindent expandtab
+    autocmd FileType cpp,c
+                \ setlocal tabstop=8 shiftwidth=8 softtabstop=8 cindent noexpandtab
 endif
 
 " -- switch tab --
@@ -200,7 +202,8 @@ autocmd VimLeave *
 
 " -- functions --
 function! UpdateCtagsCscope()
-    ! ctags -R; cscope -ubR
+    !gtags
+    " ! ctags -R; cscope -ubR
     cs r
 endfunction
 
@@ -211,9 +214,11 @@ if has("cscope")
   set csto=1
   set cst
   set nocsverb
+  set cscopetag " 使用 cscope 作为 tags 命令
+  set cscopeprg='gtags-cscope'
   " add any database in current directory
-  if filereadable("cscope.out")
-      cs add cscope.out
+  if filereadable("GTAGS")
+      cs add GTAGS
   endif
   set csverb
 endif
